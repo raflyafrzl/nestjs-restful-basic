@@ -1,13 +1,17 @@
 import {
+  Body,
   Controller,
   Get,
   HttpCode,
   Param,
   ParseIntPipe,
-  Req,
-  Res,
+  Post,
 } from '@nestjs/common';
+import { UsePipes } from '@nestjs/common/decorators';
+import { ValidationPipe } from '@nestjs/common/pipes';
 import { Request, Response } from 'express';
+import CreateUserDTO from './dtos/createuser.dto';
+import { Users } from './users.interface';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -22,5 +26,20 @@ export class UsersController {
       id: id + 'hello',
       message: 'You have logged in successfully',
     };
+  }
+
+  @HttpCode(201)
+  @Post('create')
+  @UsePipes(ValidationPipe)
+  async createUser(@Body() createUser: CreateUserDTO) {
+    const result: CreateUserDTO = await this.userService.insertData(createUser);
+
+    return result;
+  }
+
+  @HttpCode(200)
+  @Get('')
+  getAllCustomer(): Users[] {
+    return this.userService.findAll();
   }
 }
