@@ -31,8 +31,8 @@ export class UsersController {
   @HttpCode(201)
   @Post('create')
   @UsePipes(ValidationPipe)
-  async createUser(@Body() createUser: CreateUserDTO) {
-    const result: CreateUserDTO = await this.userService.insertData(createUser);
+  createUser(@Body() createUser: CreateUserDTO) {
+    const result: Users = this.userService.insertData(createUser);
 
     return result;
   }

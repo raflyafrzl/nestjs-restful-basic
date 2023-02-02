@@ -3,4 +3,8 @@ for making validation in nest js, we can use class-validator
 untuk melakukan validasi nested(DTO memiliki property yang didalamnya object) 
 kita membutuhkan decorator berikut: 
 @ValidateNested() 
-@Type(() => NamaDTO) 
+@Type(() => NamaDTO)
+
+
+03/02/2023 
+belajar mengenai Serialization. bagaimana cara melakukan filter suatu field menggunakan Interceptors(fokus pada Service dan Types)

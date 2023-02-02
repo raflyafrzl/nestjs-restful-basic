@@ -1,4 +1,12 @@
-import { IsEmail, IsNumberString, IsNotEmpty } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  IsEmail,
+  IsNumberString,
+  IsNotEmpty,
+  IsNotEmptyObject,
+  ValidateNested,
+} from 'class-validator';
+import { AddressDTO } from './addressuser.dto';
 
 export default class CreateUserDTO {
   @IsNotEmpty()
@@ -8,4 +16,8 @@ export default class CreateUserDTO {
   @IsNumberString()
   @IsNotEmpty()
   id: number;
+  @IsNotEmptyObject()
+  @ValidateNested()
+  @Type(() => AddressDTO)
+  address: AddressDTO;
 }

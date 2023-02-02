@@ -30,7 +30,7 @@ export class UsersService {
     return this.users.find((el) => el.id === id);
   }
 
-  async insertData(data: CreateUserDTO): Promise<CreateUserDTO> {
+  insertData(data: CreateUserDTO) {
     data.name = `USER ${data.name}`;
     this.users.push(data);
     return this.users[this.users.length - 1];
