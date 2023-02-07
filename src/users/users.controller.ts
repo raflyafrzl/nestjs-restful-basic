@@ -20,12 +20,11 @@ export class UsersController {
 
   //If you using Response, you can't just return it. you have to specific with response variable(Similar to express)
   //NestJS Way
-  @Get(':id')
+  @Get('search/:id')
   getUsers(@Param('id', ParseIntPipe) id: number) {
-    return {
-      id: id + 'hello',
-      message: 'You have logged in successfully',
-    };
+    const user = this.userService.findSpecificUser(id);
+
+    return user;
   }
 
   @HttpCode(201)

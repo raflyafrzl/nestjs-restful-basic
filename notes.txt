@@ -8,3 +8,34 @@ kita membutuhkan decorator berikut:
 
 03/02/2023 
 belajar mengenai Serialization. bagaimana cara melakukan filter suatu field menggunakan Interceptors(fokus pada Service dan Types)
+
+
+
+07/02/2023 
+belajar mengenai middleware pada nest js
+
+langkah yang harus dilakukan adalah membuat middleware class/function yang @Injectable
+kemudian harus mengimplements sebuah interface bernama NestMiddleware dimana harus mengoverride method use(3 parameter)
+kemudian class module pada masing-masing controller(atau global) punn harus mengimplements sebuah Interface bernama NestModule
+terdapat method configure yang menerima parameter sebuah "consumer".
+lalu settings consumer nya menggunakan method .apply() dan juga .forRoutes().
+Terdapat juga method bernama .exclude() untuk menaruh middleware pada route tertentu
+
+
+08/02/2023
+Exception and Filters 
+
+kita dapat menghandle sebuah error dengan sebuah exception. Sbuah class yang menjadi exception dapat 
+mengextends class bernama HttpException kemudian memanggil keyword "super" pada constructor.
+Untuk membuat ExceptionFilter kita harus mengimplements ExceptionFilter interface dan mengoverride
+method yang dimiliki(catch)
+exception:HttpException
+host:ArgumentsHost (bisa digunakan untuk mengambil request dan response object)
+pada dasarnya kita tidak bisa secara langsung mendapatkan response dan request. Harus menggunakan
+host.switchToHTTP() method  dan dimasukan kedalam context(ctx)
+
+  const ctx = host.switchToHttp();
+    const response = ctx.getResponse<Response>();
+    const request = ctx.getRequest<Request>();
+
+dan juga decorator yang digunakan yaitu @UseFilters
